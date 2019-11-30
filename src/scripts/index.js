@@ -79,3 +79,8 @@ class API {
         console.log(_goods);
     }
 }
+
+export {
+    API,
+    Good
+};
