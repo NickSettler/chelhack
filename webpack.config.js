@@ -7,7 +7,7 @@ module.exports = env => {
     const isProd = process.env.production;
 
     return {
-        entry: path.resolve(__dirname, 'src/index.js'),
+        entry: ['babel-polyfill', path.resolve(__dirname, 'src/index.js')],
         context: path.resolve(__dirname, 'src'),
         mode: isProd ? 'production' : 'development',
         devtool: 'inline-source-map',
