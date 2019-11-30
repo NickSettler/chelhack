@@ -32,5 +32,14 @@ body{
     position: relative;
 
     @include font(title_h2);
+    color: $theme_primary;
+}
+.head__logo-text{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    @include font(title_h2);
     color: $theme_secondary;
 }
