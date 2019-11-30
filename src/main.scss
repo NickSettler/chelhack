@@ -10,6 +10,10 @@ body{
     position: relative;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+
+    padding: 0 24px;
+    box-sizing: border-box;
 
     background: $theme_background;
 }
@@ -18,4 +22,15 @@ body{
     height: auto;
     display: flex;
     position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.head__logo-letter{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    @include font(title_h2);
+    color: $theme_secondary;
 }
