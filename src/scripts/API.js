@@ -68,15 +68,13 @@ class API {
         return result;
     }
 
-    static async getGoods() {
-        const _goods = await API.request(
+    static getGoods() {
+        return API.request(
             'http://chelhack.deletestaging.com/goods',
             {
                 json: true
             }
         );
-
-        console.log(_goods);
     }
 }
 

@@ -1,19 +1,19 @@
-const path = require("path");
-const fs = require("fs");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const fs = require('fs');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = env => {
     const isProd = process.env.production;
 
     return {
-        entry: path.resolve(__dirname, "src/index.js"),
-        context: path.resolve(__dirname, "src"),
-        mode: isProd ? "production" : "development",
-        devtool: "inline-source-map",
+        entry: path.resolve(__dirname, 'src/index.js'),
+        context: path.resolve(__dirname, 'src'),
+        mode: isProd ? 'production' : 'development',
+        devtool: 'inline-source-map',
         output: {
-            path: path.resolve(__dirname, "dist"),
-            filename: "bundle.js"
+            path: path.resolve(__dirname, 'dist'),
+            filename: 'bundle.js'
         },
         module: {
             rules: [
@@ -29,43 +29,43 @@ module.exports = env => {
                     test: /\.js/,
                     exclude: /(node_modules|bower_components)/,
                     use: {
-                        loader: "babel-loader",
+                        loader: 'babel-loader',
                         options: {
-                            presets: ["@babel/preset-env"]
+                            presets: ['@babel/preset-env']
                         }
                     }
                 },
                 {
                     test: /\.(ts|tsx)?$/,
                     exclude: /(node_modules|bower_components)/,
-                    use: "ts-loader"
+                    use: 'ts-loader'
                 },
                 {
                     test: /\.(json|png)$/,
                     use: [
-                        "file-loader"
+                        'file-loader'
                     ]
                 }
             ]
         },
         resolve: {
-            extensions: [".ts", ".js", ".json"]
+            extensions: ['.ts', '.js', '.json']
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: "main.css",
+                filename: 'main.css',
             }),
             new HtmlWebpackPlugin({
-                template: "index.html",
-                filename: "index.html"
+                template: 'index.html',
+                filename: 'index.html'
             })
         ],
         devServer: {
-            host: "0.0.0.0",
-            contentBase: path.resolve(__dirname, "dist"),
+            host: '0.0.0.0',
+            contentBase: path.resolve(__dirname, 'dist'),
             compress: true,
             port: 8154,
             watchContentBase: true
         }
-    }
-}
+    };
+};
