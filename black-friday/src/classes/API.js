@@ -1,4 +1,4 @@
-class Good {
+export class Good {
     constructor({
         id = null,
         title = '',
@@ -68,12 +68,81 @@ export default class API {
         return result;
     }
 
-    static getGoods() {
+    static getGoodsRaw() {
         return API.request(
             'http://chelhack.deletestaging.com/goods',
+            {
+                // json: true,
+                mode: 'cors',
+                method: 'GET',
+                credentials: "same-origin",
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    "Origin": "http://chelhack.deletestaging.com/"
+                }
+            }
+        );
+    }
+
+    static equal(array1, array2) {
+        if (array1.length !== array2.length) {
+            return false;
+        }
+        
+        for (let i in array1) {
+            if (!array2[i]) {
+                return false;
+            }
+            
+            if (array1[i].id !== array2[i].id) {
+                return false
+            }
+        }
+        
+        return true;
+    }
+
+    static async lazyLoadGoods() {
+        let goodsRaw = await API.request(
+            'http://10.100.67.127:8989/userapi/getGoods',
             {
                 json: true
             }
         );
+
+        const goods = goodsRaw.data.map((good) => new Good(good));
+
+        let localGoods = localStorage.getItem('goods');
+
+        localGoods = JSON.parse(localGoods);
+
+        const isEqual = API.equal(goods, localGoods);
+
+        if (!isEqual) {
+            localStorage.setItem('goods', JSON.stringify(goods));
+        }
+    }
+
+    static async getGoods() {
+        const localGoods = localStorage.getItem('goods');
+
+        if (!localGoods) {
+            let goodsRaw = await API.request(
+                'http://10.100.67.127:8989/userapi/getGoods',
+                {
+                    json: true
+                }
+            );
+    
+            const goods = goodsRaw.data.map((good) => new Good(good));
+
+            localStorage.setItem('goods', JSON.stringify(goods));
+            
+            return await API.getGoods();
+        } else {
+            API.lazyLoadGoods();
+        }
+
+        return JSON.parse(localGoods);
     }
 }

@@ -1,0 +1,23 @@
+@import "../../scss/lib.scss";
+
+.home{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+.home__content{
+    width: 62.5%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    @include media_query(tablet){
+        width: calc(100% - 48px);
+    }
+}

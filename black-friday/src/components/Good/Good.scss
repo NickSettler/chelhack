@@ -1,0 +1,147 @@
+@import "../../scss/lib.scss";
+
+.good{
+    width: calc(100% / 2 - 10px);
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-bottom: 16px;
+
+    background: rgba($theme_white, 0.04);
+}
+.good__image-block{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 16px;
+    padding: 8px 32px;
+    box-sizing: border-box;
+
+    background: $theme_white;
+}
+.good__image{
+    width: 100%;
+    height: auto;
+    max-height: 100px;
+    display: flex;
+    position: relative;
+
+    object-fit: contain;
+}
+.good__content{
+    width: calc(100% - 16px);
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+.good__title{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    margin-bottom: 16px;
+
+    @include font(more_text);
+    color: $theme_primary;
+}
+.good__down-block{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.good__subtitle_old{
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 8px;
+    
+    @include font(title_h3);
+    color: $theme_secondary;
+
+    &::before{
+        content: " ";
+        width: 100%;
+        height: 2px;
+        display: flex;
+        position: absolute;
+
+        transform: skew(10deg, 10deg);
+
+        background: $theme_secondary;
+    }
+}
+.good__subtitle_new{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    margin-bottom: 8px;
+    
+    @include font(title_h4);
+    color: $theme_primary;
+}
+.good__buttons{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    margin-bottom: 8px;
+}
+.good__button{
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: none;
+    padding: 8px 16px;
+
+    background: $theme_primary;
+    @include font(more_text);
+    color: $theme_background;
+    // box-shadow: 0px -4px 8px -2px rgba($theme_background, 0.64) inset;
+
+    cursor: pointer;
+    outline: none;
+
+    transition-property: box-shadow, transform;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+
+    &:hover{
+        // box-shadow: 0px -6px 8px rgba($theme_background, 0.48) inset;
+        transform: scale(1.02) translateY(-4px);
+    }
+    &:active{
+        // box-shadow: 0px 4px 8px rgba($theme_background, 0.48) inset;
+        transform: scale(1.01) translateY(-2px);
+    }
+}
