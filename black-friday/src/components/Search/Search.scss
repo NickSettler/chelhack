@@ -1,0 +1,127 @@
+@import "../../scss/lib.scss";
+
+.search-overlay{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+
+    transition-property: opacity, visibility;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+
+    background: $theme_primary;
+}
+.search-overlay__close{
+    width: 24px;
+    height: 24px;
+    display: flex;
+    position: absolute;
+
+    right: 32px;
+    top: 32px;
+
+    background-image: url("../../assets/icons/close.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    transition-property: background;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+
+    cursor: pointer;
+
+    &:hover{
+        background-image: url("../../assets/icons/close_active.svg");
+    }
+}
+.search-overlay__block{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+.search-overlay__row{
+    width: 62.5%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 16px 24px;
+    box-sizing: border-box;
+
+    &.search-overlay__row-input{
+        padding-top: 0;
+        margin-top: 16px;
+
+        &:focus-within::after{
+            background-image:url("../../assets/icons/search_active.svg");
+        }
+
+        &::after{
+            content: " ";
+            width: 24px;
+            height: 24px;
+            display: flex;
+            position: absolute;
+    
+            right: 32px;
+    
+            background: url("../../assets/icons/search.svg");
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+    
+            transition-property: background;
+            transition-duration: 0.15s;
+            transition-timing-function: ease-in-out;
+        }
+    }
+
+}
+.search-overlay__input{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding: 16px 24px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid $theme_grey;
+
+    background: transparent;
+    outline: none;
+
+    transition-property: border;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+
+    &:focus{
+        border-bottom: 2px solid $theme_secondary;
+    }
+}
+.search-overlay__link{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    @include font(title_h3);
+    color: $theme_black;
+
+    cursor: pointer;
+}

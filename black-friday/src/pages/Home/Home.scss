@@ -21,3 +21,36 @@
         width: calc(100% - 48px);
     }
 }
+.home__preloader-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+}
+.home__error-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+.home__error{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    margin-bottom: 32px;
+
+    @include font(title_h2);
+    color: $theme_secondary;
+}
+.home__error-details{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    @include font(title_h3);
+    color: $theme_secondary;
+}

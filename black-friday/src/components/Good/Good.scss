@@ -10,9 +10,10 @@
 
     box-sizing: border-box;
     border-radius: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 32px;
 
-    background: rgba($theme_white, 0.04);
+    background: $theme_background;
+    @include shadow(1);
 }
 .good__image-block{
     width: 100%;
@@ -25,7 +26,15 @@
     padding: 8px 32px;
     box-sizing: border-box;
 
-    background: $theme_white;
+    background: $theme_background;
+
+    &.good_loading{
+        height: 200px;
+
+        & .good__image{
+            display: none;
+        }
+    }
 }
 .good__image{
     width: 100%;
@@ -33,6 +42,10 @@
     max-height: 100px;
     display: flex;
     position: relative;
+
+    border: none;
+    box-shadow: none;
+    border-width: 0;
 
     object-fit: contain;
 }
@@ -54,8 +67,13 @@
 
     margin-bottom: 16px;
 
-    @include font(more_text);
-    color: $theme_primary;
+    @include font(title_h4);
+    color: $theme_black;
+
+
+    &.good_loading{
+        height: 2em;
+    }
 }
 .good__down-block{
     width: 100%;
@@ -75,8 +93,8 @@
 
     margin-bottom: 8px;
     
-    @include font(title_h3);
-    color: $theme_secondary;
+    @include font(title_h4);
+    color: $theme_grey;
 
     &::before{
         content: " ";
@@ -87,7 +105,7 @@
 
         transform: skew(10deg, 10deg);
 
-        background: $theme_secondary;
+        background: $theme_grey;
     }
 }
 .good__subtitle_new{
@@ -98,8 +116,12 @@
 
     margin-bottom: 8px;
     
-    @include font(title_h4);
-    color: $theme_primary;
+    @include font(title_h3);
+    color: $theme_secondary;
+
+    &.good_loading{
+        height: 1em;
+    }
 }
 .good__buttons{
     width: 100%;
@@ -124,7 +146,7 @@
     border: none;
     padding: 8px 16px;
 
-    background: $theme_primary;
+    background: $theme_secondary;
     @include font(more_text);
     color: $theme_background;
     // box-shadow: 0px -4px 8px -2px rgba($theme_background, 0.64) inset;
@@ -143,5 +165,29 @@
     &:active{
         // box-shadow: 0px 4px 8px rgba($theme_background, 0.48) inset;
         transform: scale(1.01) translateY(-2px);
+    }
+
+    &.good_loading{
+        color: $theme_grey;
+    }
+}
+.good_loading{
+    background: $theme_grey;
+    border-radius: 8px;
+
+    animation-name: preloadingAnimation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes preloadingAnimation{
+    from{
+        opacity: 0.6;
+    }
+    to{
+        opacity: 1;
     }
 }

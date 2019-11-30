@@ -8,8 +8,9 @@ class App extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route path="/black-friday/" exact>
-                        <Home />
+                    <Route path="/black-friday/" exact component={Home}>
+                    </Route>
+                    <Route path="/black-friday/:type" component={Home}>
                     </Route>
                 </Switch>
             </Router>

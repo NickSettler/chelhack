@@ -110,6 +110,10 @@ export default class API {
             }
         );
 
+        if (goodsRaw.status === 'Error') {
+            return;
+        }
+
         const goods = goodsRaw.data.map((good) => new Good(good));
 
         let localGoods = localStorage.getItem('goods');
@@ -123,26 +127,56 @@ export default class API {
         }
     }
 
-    static async getGoods() {
-        const localGoods = localStorage.getItem('goods');
+    static async getGoods(filter = 'all') {
+        if (filter !== 'all') {
+            const allGoods = await API.getGoods();
 
-        if (!localGoods) {
-            let goodsRaw = await API.request(
-                'http://10.100.67.127:8989/userapi/getGoods',
-                {
-                    json: true
-                }
-            );
-    
-            const goods = goodsRaw.data.map((good) => new Good(good));
-
-            localStorage.setItem('goods', JSON.stringify(goods));
+            if (allGoods.status === 'Error') {
+                return allGoods;
+            }
             
-            return await API.getGoods();
-        } else {
-            API.lazyLoadGoods();
-        }
+            const findFilter = {
+                'smartphones': 'Smartphones',
+                'laptops': 'Laptops',
+            }[filter]
+    
+            return {
+                status: "Success",
+                goods: allGoods.goods.filter((good) => (
+                    good.category === findFilter
+                ))
+            };
+        } else { 
+            const localGoods = localStorage.getItem('goods');
 
-        return JSON.parse(localGoods);
+            if (!localGoods) {
+                let goodsRaw = await API.request(
+                    'http://10.100.67.127:8989/userapi/getGoods',
+                    {
+                        json: true
+                    }
+                );
+                
+                if (goodsRaw.status === 'Error') {
+                    return goodsRaw;
+                }
+
+                const goods = goodsRaw.data.map((good) => new Good(good));
+
+                localStorage.setItem('goods', JSON.stringify(goods));
+                
+                return await API.getGoods();
+            } else {
+                API.lazyLoadGoods();
+            }
+
+            return {
+                status: 'Success',
+                goods: JSON.parse(localGoods)
+            };
+        }
+    }
+
+    static async getGoodsWithFilters() {
     }
 }
