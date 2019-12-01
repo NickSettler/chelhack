@@ -70,10 +70,10 @@ class Good extends React.Component{
                     </span>
                     <div className="good__down-block">
                         <span onClick={this.openItem} className={"good__subtitle_old"+(this.props.isPreloading ? " good_loading" : "")}>
-                            {this.props.good ? `${this.formatPrice(this.props.good.price)} ₽`: ""}
+                            {this.props.good ? `${this.formatPrice(this.props.good.price).replace(/,/g, ' ')} ₽`: ""}
                         </span>
                         <span onClick={this.openItem} className={"good__subtitle_new"+(this.props.isPreloading ? " good_loading" : "")}>
-                            {this.props.good ? `${this.formatPrice(this.props.good.finalPrice)} ₽`: ""}
+                            {this.props.good ? `${this.formatPrice(this.props.good.finalPrice).replace(/,/g, ' ')} ₽`: ""}
                         </span>
                         <div className="good__buttons">
                             <button className={"good__button"+(this.props.isPreloading ? " good_loading" : "")+(this.state.isInCart ? " good_inCart" : "")} onClick={this.addToCart}>

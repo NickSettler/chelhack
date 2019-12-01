@@ -18,6 +18,7 @@ class Header extends React.Component{
             <header className="header">
                 <div className="header__logo">
                     <Link className="header__link-block header__logo-block" to="/black-friday">
+                        <div className="header__logo-image"></div>
                         <span className="header__logo-letter">B</span>
                         <span className="header__logo-text">Friday</span>
                     </Link>

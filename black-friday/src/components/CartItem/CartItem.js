@@ -54,7 +54,7 @@ class CartItem extends React.Component{
                         <div className="cart-item__button" onClick={this.plusItem}>+</div>
                     </div>
                     <span className="cart-item__total">
-                        Итого: {this.formatPrice(this.props.item.finalPrice * this.state.count)}₽
+                        Итого: {this.formatPrice(this.props.item.finalPrice * this.state.count).replace(/,/g, ' ')}₽
                     </span>
                 </div>
             </div>

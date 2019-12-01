@@ -117,10 +117,10 @@ class GoodPage extends React.Component{
                             В наличии: {this.state.good.quantity}шт.
                         </span>
                         <span className="good-page__price_old">
-                            {this.formatPrice(this.state.good.price)}₽
+                            {this.formatPrice(this.state.good.price).replace(/,/g, ' ')}₽
                         </span>
                         <span className="good-page__price_new">
-                            {this.formatPrice(this.state.good.finalPrice)}₽
+                            {this.formatPrice(this.state.good.finalPrice).replace(/,/g, ' ')}₽
                         </span>
                         <span className="good-page__table-title">
                             Характеристики

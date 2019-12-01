@@ -256,6 +256,17 @@ class Home extends React.Component {
                             </button>
                         </div>
                     </div>
+                    <div className="home__page-controls home__page-controls_up">
+                        <div onClick={() => this.changePage(this.state.page - 1)} className="home__page-button">{"<"}</div>
+                        {
+                            new Array(Math.ceil(this.state.goods.length / 12)).fill().map((_, i) => {
+                                return (
+                                    <div onClick={() => this.changePage(i)} className={"home__page-button"+(this.state.page === i ? " active" : "")}>{i + 1}</div>
+                                )
+                            })
+                        }
+                        <div onClick={() => this.changePage(this.state.page + 1)} className="home__page-button">{">"}</div>
+                    </div>
                     {
                         this.state.loading ? (
                             new Array(6).fill().map((_, i) => {

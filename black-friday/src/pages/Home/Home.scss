@@ -52,6 +52,10 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: stretch;
+
+    @include media_query(tablet){
+        flex-direction: column;
+    }
 }
 .home__filter-block{
     width: calc(100% / 3 - 20px);
@@ -59,6 +63,10 @@
     display: flex;
     position: relative;
     flex-direction: column;
+    @include media_query(tablet){
+        width: 100%;
+        margin-bottom: 32px;
+    }
 }
 .home__filter-title{
     width: 100%;
@@ -162,6 +170,13 @@
     &:active{
         transform: translateY(-1px);
     }
+
+    @include media_query(tablet){
+        width: 100%;
+        align-self: center;
+        margin-left: 0;
+        justify-content: center;
+    }
 }
 .home__preloader-container{
     width: 100%;
@@ -204,6 +219,10 @@
     justify-content: center;
 
     margin-bottom: 32px;
+
+    &.home__page-controls_up{
+        justify-content: flex-end;
+    }
 }
 .home__page-button{
     width: 48px;

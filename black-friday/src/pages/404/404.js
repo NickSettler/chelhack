@@ -38,6 +38,7 @@ class Error404 extends React.Component{
             <div className="error404">
                 <Header openSearch={this.openSearch} />
                 <div className="error404__content">
+                    <div className="error404__img"/>
                     <span className="error404__title">
                         Как вас сюда занесло?
                     </span>

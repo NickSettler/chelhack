@@ -15,6 +15,16 @@
     position: relative;
     flex-direction: column;
     align-items: center;
+    @include media_query(laptop){
+        width: 83.33%;
+    }
+    @include media_query(laptop_small){
+        width: 87.84%;
+    }
+
+    @include media_query(tablet){
+        width: calc(100% - 48px);
+    }
 }
 .form__title{
     width: 100%;
@@ -65,6 +75,10 @@
         -webkit-appearance: none;
         visibility: hidden;
         margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
+
+    @include media_query(mobile_large){
+        width: 100%;
     }
 }
 .form__success{
@@ -117,5 +131,9 @@
     }
     &:active{
         transform: translateY(-1px);
+    }
+    @include media_query(mobile_large){
+        width: 100%;
+        justify-content: center;
     }
 }

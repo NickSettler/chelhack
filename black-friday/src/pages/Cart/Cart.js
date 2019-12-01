@@ -15,12 +15,29 @@ class CartPage extends React.Component {
             search: false
         };
 
+        this.calculateSum = this.calculateSum.bind(this);
         this.clearItems = this.clearItems.bind(this);
         this.fillItems = this.fillItems.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.closeSearch = this.closeSearch.bind(this);
         this.openSearch = this.openSearch.bind(this);
         this.openForm = this.openForm.bind(this);
+    }
+
+    formatPrice(price) {
+        return price.toLocaleString('en');
+    }
+
+    calculateSum() {
+        let sum = 0;
+
+        for (let item of this.state.items) {
+            const itemSum = item.finalPrice * item.count;
+
+            sum += itemSum;
+        }
+
+        return sum;
     }
 
     clearItems() {
@@ -122,8 +139,8 @@ class CartPage extends React.Component {
                         </span>
                     )}{this.state.items.length > 0 ? (
                         <span className="cart__total">
-                            Итого:
-                            {}
+                            Итого:&nbsp;
+                            {this.formatPrice(this.calculateSum()).replace(/,/g, ' ')}₽
                         </span>
                     ) : (
                         <div></div>
