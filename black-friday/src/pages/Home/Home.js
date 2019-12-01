@@ -11,6 +11,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            page: 0,
             goods: [],
             isSuccess: true,
             loading: true,
@@ -24,6 +25,7 @@ class Home extends React.Component {
             memArray: [],
         }
 
+        this.changePage = this.changePage.bind(this);
 
         this.closeSearch = this.closeSearch.bind(this);
         this.openSearch = this.openSearch.bind(this);
@@ -40,6 +42,25 @@ class Home extends React.Component {
         this.handleNumberInput = this.handleNumberInput.bind(this);
     }
 
+    changePage(newPage) {
+        const pages = Math.ceil(this.state.goods.length / 12);
+
+        if (newPage >= pages) {
+            newPage--;
+        }
+
+        if (newPage < 0) {
+            newPage = 0;
+        }
+
+        this.setState({
+            ...this.state,
+            page: newPage
+        });
+
+        return;
+    }
+    
     fillGoods() {
         const {type} = this.props.match.params;
 
@@ -242,13 +263,13 @@ class Home extends React.Component {
                         ) : (
                             this.state.isSuccess ? (
                                 this.state.applyFilters ? (
-                                    this.state.goods.map((good, i) => {
+                                    this.state.goods.slice(this.state.page * 12, this.state.page * 12 + 12).map((good, i) => {
                                         return (
                                             <Good updateHandler={this.goodUpdateHandler} key={i+6} good={good} />
                                         )
                                     })
                                 ) : (
-                                    this.state.goods.map((good, i) => {
+                                    this.state.goods.slice(this.state.page * 12, this.state.page * 12 + 12).map((good, i) => {
                                         return (
                                             <Good updateHandler={this.goodUpdateHandler} key={i+6} good={good} />
                                         )
@@ -264,6 +285,17 @@ class Home extends React.Component {
                             )
                         )
                     }
+                    <div className="home__page-controls">
+                        <div onClick={() => this.changePage(this.state.page - 1)} className="home__page-button">{"<"}</div>
+                        {
+                            new Array(Math.ceil(this.state.goods.length / 12)).fill().map((_, i) => {
+                                return (
+                                    <div onClick={() => this.changePage(i)} className="home__page-button">{i + 1}</div>
+                                )
+                            })
+                        }
+                        <div onClick={() => this.changePage(this.state.page + 1)} className="home__page-button">{">"}</div>
+                    </div>
                 </div>
 
                 <Search shown={this.state.search} closeHandler={this.closeSearch}/>

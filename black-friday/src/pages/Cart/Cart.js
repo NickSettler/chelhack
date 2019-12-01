@@ -89,7 +89,7 @@ class CartPage extends React.Component {
     }
 
     render(){
-        if(this.redirectToForm){
+        if(this.state.redirectToForm){
             return <Redirect push to="/black-friday/form/" />
         }
         return (

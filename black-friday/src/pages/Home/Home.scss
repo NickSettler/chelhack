@@ -196,3 +196,34 @@
     @include font(title_h3);
     color: $theme_secondary;
 }
+.home__page-controls{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+}
+.home__page-button{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    @include font(more_text);
+
+    background: $theme_white;
+    color: $theme_secondary;
+
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+
+    &:first-of-type{
+        border-radius: 8px 0 0 8px;
+    }
+    &:last-of-type{
+        border-radius: 0 8px 8px 0;
+    }
+}
