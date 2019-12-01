@@ -1,0 +1,236 @@
+@import "../../scss/lib.scss";
+
+.good-page{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+.good-page__header{
+    width: 62.5%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    margin-bottom: 16px;
+
+    @include media_query(laptop){
+        width: 83.33%;
+    }
+    @include media_query(laptop_small){
+        width: 87.84%;
+    }
+    @include media_query(tablet){
+        width: calc(100% - 48px);
+    }
+}
+.good-page__header-back{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    position: relative;
+
+    background-image: url("../../assets/icons/back.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    cursor: pointer;
+}
+.good-page__content{
+    width: 62.5%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+
+    border-radius: 4px;
+    padding: 16px 8px;
+    box-sizing: border-box;
+    margin-bottom: 32px;
+
+    background: $theme_background;
+
+    @include shadow(1);
+
+    @include media_query(laptop){
+        width: 83.33%;
+    }
+    @include media_query(laptop_small){
+        width: 87.84%;
+    }
+    @include media_query(tablet){
+        width: calc(100% - 48px);
+    }
+}
+.good-page__image-block{
+    width: calc(100% / 12 * 4 - 10px);
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+.good-page__image{
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    display: flex;
+    position: relative;
+
+    margin-bottom: 16px;
+
+    object-fit: contain;
+}
+.good-page__button{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    justify-content: center;
+
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: none;
+
+    background: $theme_secondary;
+    outline: none;
+    cursor: pointer;
+    color: $theme_background;
+    @include font(more_text);
+    color: $theme_background;
+
+    @include shadow(1);
+
+    transition-property: box-shadow, transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+
+    user-select: none;
+
+    &:hover{
+        transform: translateY(-2px);
+        @include shadow(2);
+    }
+    &:active{
+        transform: translateY(-1px);
+    }
+}
+.good-page__content-block{
+    width: calc(100% / 12 * 8 - 10px);
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.good-page__title{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    margin-bottom: 8px;
+    
+    @include font(title_h3);
+    color: $theme_black;
+}
+.good-page__brand{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    margin-bottom: 8px;
+
+    @include font(more_text);
+    // color: $theme_grey;
+}
+.good-page__count{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    margin-bottom: 32px;
+
+    @include font(more_text)
+    color: $theme_grey;
+}
+.good-page__price_old{
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+
+    margin-bottom: 8px;
+    
+    @include font(title_h4);
+    color: $theme_grey;
+
+    &::after{
+        content: " ";
+        width: 100%;
+        height: 2px;
+        display: flex;
+        position: absolute;
+
+        background: $theme_grey;
+
+        transform: skew(10deg, 10deg);
+    }
+}
+.good-page__price_new{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    margin-bottom: 32px;
+
+    @include font(title_h3);
+    color: $theme_secondary;
+}
+.good-page__table-title{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    @include font(more_text);
+    color: $theme_black;
+}
+.good-page__table{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+.good-page__table-row{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+}
+.good-page__table-cell{
+    width: 50%;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid $theme_grey;
+
+    @include font(main_text);
+    color: $theme_black;
+}

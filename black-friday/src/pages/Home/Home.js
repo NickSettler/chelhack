@@ -4,9 +4,11 @@ import Header from "../../components/Header/Header";
 import Search from "../../components/Search/Search";
 import API from "../../classes/API";
 import Good from "../../components/Good/Good";
+import {Good as GoodItem} from "../../classes/API";
+import Snackbar from "../../components/Snackbar/Snackbar";
 
-class Home extends React.Component{
-    constructor(props){
+class Home extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             goods: [],
@@ -16,10 +18,13 @@ class Home extends React.Component{
             search: false,
         }
 
-        this.toggleSearch = this.toggleSearch.bind(this);
+
+        this.closeSearch = this.closeSearch.bind(this);
+        this.openSearch = this.openSearch.bind(this);
+        this.goodUpdateHandler = this.goodUpdateHandler.bind(this);
     }
 
-    fillGoods(){
+    fillGoods() {
         const {type} = this.props.match.params;
 
         if (type !== "smartphones" && type !== "laptops" && type !== undefined) {
@@ -28,11 +33,15 @@ class Home extends React.Component{
                 loading: false,
                 isSuccess: false,
                 message: "Указан неправильный тип товара"
-            })
+            });
         } else {
-            API.getGoods(type).then((response) => {
+            API.getGoods(type, true).then((response) => {
                 const { status, goods, message } = response;
                 if (status === "Success") {
+                    this.setState({
+                        ...this.state,
+                        goods: []
+                    });
                     this.setState({
                         ...this.state,
                         goods,
@@ -47,7 +56,7 @@ class Home extends React.Component{
                         isSuccess: false,
                     });
                 }
-            })
+            });
         }
     }
 
@@ -55,35 +64,49 @@ class Home extends React.Component{
         this.fillGoods();
     }
 
-    componentDidUpdate(prevProps){
+    componentDidUpdate(prevProps, prevState) {
         if(this.props.match.params.type !== prevProps.match.params.type){
             this.fillGoods();
         }
     }
-    
-    toggleSearch(){
-        this.setState(prevState => ({
-            search: !prevState.search
-        }));
+
+    goodUpdateHandler(){
+        this.fillGoods();
     }
 
-    render(){
+    closeSearch() {
+        console.log("[SEARCH] - CLOSE")
+        this.setState({
+            ...this.state,
+            search: false,
+        })
+    }
+    openSearch() {
+        console.log("[SEARCH] - OPEN")
+        this.setState({
+            ...this.state,
+            search: true
+        })
+    }
+
+    render() {
         return(
             <div className="home">
-                <Header searchHandler={this.toggleSearch} />
+
+                <Header openSearch={this.openSearch} />
                 <div className="home__content">
                     {
                         this.state.loading ? (
-                            new Array(4).fill().map((_, i) => {
+                            new Array(6).fill().map((_, i) => {
                                 return (
-                                    <Good key={i} isPreloading={true} />
+                                    <Good key={i} isPreloading={true} good={new GoodItem()} />
                                 )
                             })
                         ) : (
                             this.state.isSuccess ? (
                                 this.state.goods.map((good, i) => {
                                     return (
-                                        <Good key={i} good={good} />
+                                        <Good updateHandler={this.goodUpdateHandler} key={i+6} good={good} />
                                     )
                                 })
                             ) : (
@@ -97,7 +120,12 @@ class Home extends React.Component{
                         )
                     }
                 </div>
-                <Search shown={this.state.search}/>
+
+                <Search shown={this.state.search} closeHandler={this.closeSearch}/>
+                <Snackbar action={{
+                    text: "В корзину",
+                    action: "/black-friday/cart"
+                }} />
             </div>
         );
     }

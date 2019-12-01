@@ -9,12 +9,50 @@ class CartItem {
 }
 
 export default class Cart {
-    static addItem(itemId) {
+    static clearItems() {
+        return localStorage.setItem('cart', '[]')
+    }
+
+    static getItem(itemId) {
+        let items = Cart.getItems();
+
+        let currentItem = items.find((item) => (
+            item.id === itemId
+        )) || null;
+
+        return currentItem;
+    }
+
+    static editItem(itemId, count = null) {
         let items = Cart.getItems();
 
         let currentItem = items.find((item) => (
             item.id === itemId
         ));
+
+        if (!currentItem) {
+            currentItem = new CartItem({
+                id: itemId
+            });
+        }
+
+        currentItem.count = count;
+
+        const newItems = [
+            ...items.filter(item => item.id !== itemId),
+            currentItem
+        ];
+
+        return localStorage.setItem('cart', JSON.stringify(newItems));
+    }
+
+    static addItem(itemId) {
+        let items = Cart.getItems();
+        let currentItem = items.find((item) => (
+            item.id === itemId
+        ));
+
+        console.log(currentItem);
 
         if (!currentItem) {
             currentItem = new CartItem({

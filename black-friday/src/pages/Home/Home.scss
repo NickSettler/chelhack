@@ -17,6 +17,13 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
+    @include media_query(laptop){
+        width: 83.33%;
+    }
+    @include media_query(laptop_small){
+        width: 87.84%;
+    }
+
     @include media_query(tablet){
         width: calc(100% - 48px);
     }

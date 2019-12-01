@@ -10,7 +10,7 @@
 
     padding: 16px 24px;
     box-sizing: border-box;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 4px 4px;
     margin-bottom: 32px;
 
     background: $theme_primary;
@@ -58,6 +58,13 @@
     text-decoration: none;
     display: flex;
     flex-direction: row;
+
+    @include media_query(mobile_large){
+        display: none;
+        &.header__logo-block{
+            display: flex;
+        }
+    }
 }
 .header__link{
     width: auto;

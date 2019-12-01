@@ -1,19 +1,64 @@
 import React from "react";
 import "./App.scss";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import Home from "./pages/Home/Home";
+import CartPage from "./pages/Cart/Cart";
+import SearchPage from "./pages/Search/Search";
+import SearchRedirect from "./pages/SearchRedirect/SearchRedirect";
+import GoodPage from "./pages/GoodPage/GoodPage";
 
 class App extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            search: false,
+            redirect: false,
+            query: "",
+        }
+
+        this.toggleSearch = this.toggleSearch.bind(this);
+        this.closeSearch = this.closeSearch.bind(this);
+        this.openSearch = this.openSearch.bind(this);
+    }
+
+    toggleSearch() {
+        this.setState(prevState => ({
+            search: !prevState.search
+        }));
+    }
+
+    componentDidUpdate(){
+        console.log(`[SEARCH] - ${this.state.search}`)
+    }
+    closeSearch() {
+        console.log("[SEARCH] - CLOSE")
+        this.setState({
+            ...this.state,
+            search: false,
+        })
+    }
+    openSearch() {
+        console.log("[SEARCH] - OPEN")
+        this.setState({
+            ...this.state,
+            search: true
+        })
+    }
+
     render(){
         return (
-            <Router>
-                <Switch>
-                    <Route path="/black-friday/" exact component={Home}>
-                    </Route>
-                    <Route path="/black-friday/:type" component={Home}>
-                    </Route>
-                </Switch>
-            </Router>
+            <div>
+                <Router>
+                    <Switch>
+                        <Route path="/black-friday/" exact component={Home} />
+                        <Route path="/black-friday/filter/:type" component={Home} />
+                        <Route path="/black-friday/cart" component={CartPage} />
+                        <Route path="/black-friday/good/:id" component={props => <GoodPage {...props} />} />
+                        <Route path="/black-friday/search/:query?" component={props => <SearchPage {...props} openSearch={this.openSearch} />}  />
+                        <Route path="/black-friday/search_redirect/:query" component={props=><SearchRedirect {...props} />}/>
+                    </Switch>
+                </Router>
+            </div>
         );
     }
 }

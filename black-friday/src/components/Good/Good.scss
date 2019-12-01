@@ -1,7 +1,7 @@
 @import "../../scss/lib.scss";
 
-.good{
-    width: calc(100% / 2 - 10px);
+.good {
+    width: calc(100% / 3 - 10px);
     height: auto;
     display: flex;
     position: relative;
@@ -13,9 +13,31 @@
     margin-bottom: 32px;
 
     background: $theme_background;
+
+    transition-property: transform, box-shadow;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+
     @include shadow(1);
+
+    &:hover{
+        transform: translateY(-4px) scale(1.02);
+        @include shadow(2);
+    }
+
+    @include media_query(laptop) {
+        width: calc(100% / 3 - 10px);
+    }
+    @include media_query(tablet) {
+        width: calc(100% / 2 - 10px);
+    }
+    @include media_query(mobile_large) {
+        width: 100%;
+    }
+
+    cursor: pointer;
 }
-.good__image-block{
+.good__image-block {
     width: 100%;
     height: auto;
     display: flex;
@@ -121,6 +143,7 @@
 
     &.good_loading{
         height: 1em;
+        color: $theme_grey;
     }
 }
 .good__buttons{
@@ -144,31 +167,33 @@
     box-sizing: border-box;
     border-radius: 8px;
     border: none;
+    border: 2px solid $theme_secondary;
     padding: 8px 16px;
 
-    background: $theme_secondary;
+    background: transparent;
     @include font(more_text);
-    color: $theme_background;
-    // box-shadow: 0px -4px 8px -2px rgba($theme_background, 0.64) inset;
+    color: $theme_secondary;
 
     cursor: pointer;
     outline: none;
 
-    transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform, background, border, color;
     transition-duration: 0.1s;
     transition-timing-function: ease-in-out;
 
-    &:hover{
-        // box-shadow: 0px -6px 8px rgba($theme_background, 0.48) inset;
-        transform: scale(1.02) translateY(-4px);
-    }
-    &:active{
-        // box-shadow: 0px 4px 8px rgba($theme_background, 0.48) inset;
-        transform: scale(1.01) translateY(-2px);
-    }
-
     &.good_loading{
         color: $theme_grey;
+    }
+    &.good_inCart{
+        font-weight: bold;
+        background: $theme_secondary;
+        border: none;
+        color: $theme_background;
+    }
+    &:disabled{
+        cursor: not-allowed;
+        background: rgba($theme_grey, 0.24);
+        color: rgba($theme_black, 0.24);
     }
 }
 .good_loading{

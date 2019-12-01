@@ -1,0 +1,62 @@
+@import "../../scss/lib.scss";
+
+.snackbar{
+    width: calc(100vw / 3);
+    height: auto;
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 8px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    bottom: 0;
+    left: calc(50% - (100vw / 6));
+
+    background: darken($color: $theme_grey, $amount: 15);
+
+    transform: translateY(200px);
+
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+
+    &.active{
+        transform: translateY(-16px);
+    }
+}
+.snackbar__text{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    margin-bottom: 8px;
+
+    @include font(additional_text);
+    color: $theme_background;
+}
+.snackbar__aciton{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+    align-self: flex-end;
+    
+    box-sizing: border-box;
+}
+.snackbar__link{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    @include font(additional_text);
+    color: $theme_primary;
+    text-decoration: none;
+    font-weight: bold;
+
+}

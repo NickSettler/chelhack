@@ -10,23 +10,23 @@ class Header extends React.Component{
     }
 
     showParentSearch(){
-        this.props.searchHandler();
-        // console.log("CLICK");
+        this.props.openSearch();
     }
 
     render(){
         return(
             <header className="header">
                 <div className="header__logo">
-                    <Link className="header__link-block" to="/black-friday">
+                    <Link className="header__link-block header__logo-block" to="/black-friday">
                         <span className="header__logo-letter">B</span>
                         <span className="header__logo-text">Friday</span>
                     </Link>
                 </div>
                 <nav className="header__menu">
-                    <div className="header__link" onClick={this.showParentSearch}>Сёрч</div>
-                    <Link className="header__link-block" to="/black-friday/smartphones"><div className="header__link">Smartphones</div></Link>
-                    <Link className="header__link-block" to="/black-friday/laptops"><div className="header__link">Laptops</div></Link>
+                    <div className="header__link" onClick={this.showParentSearch}>Поиск</div>
+                    <Link className="header__link-block" to="/black-friday/filter/smartphones"><div className="header__link">Смартфоны</div></Link>
+                    <Link className="header__link-block" to="/black-friday/filter/laptops"><div className="header__link">Ноутбуки</div></Link>
+                    <Link className="header__link-block" to="/black-friday/cart"><div className="header__link">Корзина</div></Link>
                 </nav>
             </header>
         )

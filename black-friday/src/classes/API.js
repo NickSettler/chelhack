@@ -1,3 +1,5 @@
+import Cart from './Cart';
+
 export class Good {
     constructor({
         id = null,
@@ -27,8 +29,6 @@ export class Good {
         this.parameters = parameters;
     }
 }
-
-const goods = [];
 
 export default class API {
     static async request(url, params = {}) {
@@ -85,6 +85,10 @@ export default class API {
     }
 
     static equal(array1, array2) {
+        if (!array1 || !array2) {
+            return false;
+        }
+
         if (array1.length !== array2.length) {
             return false;
         }
@@ -103,10 +107,12 @@ export default class API {
     }
 
     static async lazyLoadGoods() {
+        console.log('LAZYLOAD');
         let goodsRaw = await API.request(
             'http://10.100.67.127:8989/userapi/getGoods',
             {
-                json: true
+                json: true,
+                method: 'POST'
             }
         );
 
@@ -127,7 +133,61 @@ export default class API {
         }
     }
 
-    static async getGoods(filter = 'all') {
+    static async searchGoods(query = null) {
+        if (query === null) {
+            return {
+                status: 'Error',
+                message: 'Строка поиска не указана'
+            }
+        }
+
+        const goods = await API.getGoods('all');
+
+        if (goods.status === 'Error') {
+            return goods;
+        }
+
+        query = query.replace(/[^\w\s]/ig, '');
+
+        const regexpQuery = new RegExp(query, 'ig');
+
+        return {
+            status: 'Success',
+            goods: goods.goods.filter((good) => (
+                regexpQuery.test(good.title)
+            ))
+        }
+    }
+
+    static async getGoodById(itemId = null) {
+        if (!itemId) {
+            return null;
+        }
+
+        const allGoods = await API.getGoods('all');
+
+        if (allGoods.status === 'Error') {
+            return allGoods;
+        }
+
+        return allGoods.goods.find((good) => (
+            good.id === itemId
+        )) || null;
+    }
+
+    static getItemById(itemId = null) {
+        const cart = Cart.getItems();
+
+        if (!itemId || !cart || !cart.length) {
+            return null;
+        }
+
+        return cart.find((item) => (
+            item.id === itemId
+        )) || null;
+    }
+
+    static async getGoods(filter = 'all', fromHome = false) {
         if (filter !== 'all') {
             const allGoods = await API.getGoods();
 
@@ -153,7 +213,8 @@ export default class API {
                 let goodsRaw = await API.request(
                     'http://10.100.67.127:8989/userapi/getGoods',
                     {
-                        json: true
+                        json: true,
+                        method: 'POST'
                     }
                 );
                 
@@ -167,7 +228,9 @@ export default class API {
                 
                 return await API.getGoods();
             } else {
-                API.lazyLoadGoods();
+                if (fromHome) {
+                    API.lazyLoadGoods();
+                }
             }
 
             return {
@@ -175,8 +238,5 @@ export default class API {
                 goods: JSON.parse(localGoods)
             };
         }
-    }
-
-    static async getGoodsWithFilters() {
     }
 }

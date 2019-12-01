@@ -15,7 +15,7 @@ $deviceBreakpoints: (
 
 @mixin media_query($device){
     @if map-has-key($deviceBreakpoints, $device) == false{
-        @error "$device должен быть laptop/laptop_small/tablet_large/tablet/mobile_large/mobile_small";
+        @error '$device должен быть laptop/laptop_small/tablet_large/tablet/mobile_large/mobile_small';
     }@else{
         @media screen {
             @media (max-width: map-get($deviceBreakpoints, $device)){
@@ -27,15 +27,15 @@ $deviceBreakpoints: (
 
 $properties: (
     //                  Font Family    Style    Weight  Color           Transform
-    title_h1:           ("Roboto Slab" normal   bold    $theme_primary   none),
-    title_h2:           ("Roboto Slab" normal   bold    $theme_primary   none),
-    title_h2__light:    ("Roboto"      normal   500     $theme_primary   none),
-    title_h3:           ("Roboto"      normal   500     #4D4D4D       none),
-    title_h3__light:    ("Roboto"      normal   300     #4D4D4D       uppercase),
-    title_h4:           ("Roboto"      normal   normal  #4D4D4D       none),
-    more_text:          ("Roboto"      normal   normal  #4D4D4D       none),
-    main_text:          ("Roboto"      normal   normal  #4D4D4D       none),
-    additional_text:    ("Roboto"      normal   normal  #4D4D4D       none),
+    title_h1:           ('Roboto Slab' normal   bold    $theme_primary   none),
+    title_h2:           ('Roboto Slab' normal   bold    $theme_primary   none),
+    title_h2__light:    ('Roboto'      normal   500     $theme_primary   none),
+    title_h3:           ('Roboto'      normal   500     #4D4D4D       none),
+    title_h3__light:    ('Roboto'      normal   300     #4D4D4D       uppercase),
+    title_h4:           ('Roboto'      normal   normal  #4D4D4D       none),
+    more_text:          ('Roboto'      normal   normal  #4D4D4D       none),
+    main_text:          ('Roboto'      normal   normal  #4D4D4D       none),
+    additional_text:    ('Roboto'      normal   normal  #4D4D4D       none),
 );
 
 $variableProperties: (
@@ -54,10 +54,10 @@ $variableProperties: (
 
 @mixin font($style){
     @if map-has-key($properties, $style) == false {
-        @error "$style должен быть title_h1/title_h2/title_h2__light/title_h3/title_h3__light/title_h4/more_text/main_text/additional_text";
+        @error '$style должен быть title_h1/title_h2/title_h2__light/title_h3/title_h3__light/title_h4/more_text/main_text/additional_text';
     }@else{
         $propertyList: map-get($properties, $style);
-        font-family: nth($propertyList, 1), "Arial", sans-serif;
+        font-family: nth($propertyList, 1), 'Arial', sans-serif;
         font-style: nth($propertyList, 2);
         font-weight: nth($propertyList, 3);
         color: nth($propertyList, 4);
@@ -96,4 +96,29 @@ $shadow_levels: (
 
 @mixin shadow($level){
     box-shadow: map-get($map: $shadow_levels, $key: $level);
+}
+
+// FONTS
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url('../assets/fonts/Roboto/Roboto-Regular.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: bold;
+    src: local('Roboto'), local('Roboto-Regular'), url('../assets/fonts/Roboto/Roboto-Bold.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Bold'), url('../assets/fonts/Roboto_Slab/static/RobotoSlab-Regular.ttf') format('ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Slab';
+    font-weight: bold;
+    src: local('Roboto Slab'), local('Roboto Slab'), url('../assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf') format('ttf');
 }

@@ -1,0 +1,95 @@
+@import "../../scss/lib.scss";
+
+.cart{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+}
+.cart__content{
+    width: 62.5%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+.cart__header{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    margin-bottom: 32px;
+
+    border-bottom: 2px solid $theme_grey;
+    
+}
+.cart__title{
+    width: auto;
+    height: auto;
+    display: flex;
+    position: relative;
+
+    @include font(title_h2);
+    color: $theme_black;
+}
+.cart__clear{
+    width: 32px;
+    height: 32px;
+    display: flex;
+    position: relative;
+
+    background-image: url("../../assets/icons/trash.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transition-property: background;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+
+    cursor: pointer;
+
+    &:hover{
+        background-image: url("../../assets/icons/trash_active.svg");
+    }
+}
+.cart__empty{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+.cart__empty-line{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    flex-wrap: wrap;
+
+    @include font(title_h3);
+    color: $theme_black;
+
+    &:nth-of-type(1){
+        margin-bottom: 8px;
+    }
+}
+.cart__link{
+    text-decoration: none;
+
+    &:visited{
+        color: blue;
+    }
+}
