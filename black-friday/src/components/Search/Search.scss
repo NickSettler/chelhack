@@ -15,7 +15,7 @@
     transition-duration: 0.3s;
     transition-timing-function: ease-in-out;
 
-    background: $theme_primary;
+    background: rgba($theme_black, 1);
 }
 .search-overlay__close{
     width: 24px;
@@ -106,6 +106,9 @@
     border: none;
     border-bottom: 2px solid $theme_grey;
 
+    @include font(main_text);
+    color: $theme_white;
+
     background: transparent;
     outline: none;
 
@@ -127,7 +130,15 @@
     position: relative;
 
     @include font(title_h3);
-    color: $theme_black;
+    color: $theme_white;
 
     cursor: pointer;
+
+    transition-property: color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+
+    &:hover{
+        color: $theme_secondary;
+    }
 }

@@ -37,7 +37,7 @@
     margin-bottom: 8px;
 
     @include font(additional_text);
-    color: $theme_background;
+    color: $theme_white;
 }
 .snackbar__aciton{
     width: auto;

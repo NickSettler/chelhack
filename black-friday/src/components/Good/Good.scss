@@ -12,7 +12,7 @@
     border-radius: 8px;
     margin-bottom: 32px;
 
-    background: $theme_background;
+    background: rgba($theme_white, 0.04);
 
     transition-property: transform, box-shadow;
     transition-duration: 0.15s;
@@ -48,7 +48,7 @@
     padding: 8px 32px;
     box-sizing: border-box;
 
-    background: $theme_background;
+    background: transparent;
 
     &.good_loading{
         height: 200px;
@@ -90,7 +90,7 @@
     margin-bottom: 16px;
 
     @include font(title_h4);
-    color: $theme_black;
+    color: $theme_white;
 
 
     &.good_loading{
@@ -116,7 +116,7 @@
     margin-bottom: 8px;
     
     @include font(title_h4);
-    color: $theme_grey;
+    color: rgba($theme_white, 0.48);
 
     &::before{
         content: " ";
@@ -188,7 +188,7 @@
         font-weight: bold;
         background: $theme_secondary;
         border: none;
-        color: $theme_background;
+        color: $theme_white;
     }
     &:disabled{
         cursor: not-allowed;

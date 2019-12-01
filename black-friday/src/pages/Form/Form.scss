@@ -1,0 +1,15 @@
+@import "../../scss/lib.scss";
+
+.form{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+}
+.form__content{
+    width: 62.5%;
+    height: auto;
+    display: flex;
+    position: relative;
+}

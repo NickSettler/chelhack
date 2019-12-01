@@ -54,7 +54,7 @@
     box-sizing: border-box;
     margin-bottom: 32px;
 
-    background: $theme_background;
+    background: $theme_white;
 
     @include shadow(1);
 
@@ -101,9 +101,9 @@
     background: $theme_secondary;
     outline: none;
     cursor: pointer;
-    color: $theme_background;
+    color: $theme_white;
     @include font(more_text);
-    color: $theme_background;
+    color: $theme_white;
 
     @include shadow(1);
 

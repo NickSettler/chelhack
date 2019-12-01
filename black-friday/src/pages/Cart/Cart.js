@@ -5,7 +5,7 @@ import Search from "../../components/Search/Search";
 import API from "../../classes/API";
 import Cart from '../../classes/Cart';
 import CartItem from "../../components/CartItem/CartItem";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 class CartPage extends React.Component {
     constructor(props) {
@@ -20,6 +20,7 @@ class CartPage extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.closeSearch = this.closeSearch.bind(this);
         this.openSearch = this.openSearch.bind(this);
+        this.openForm = this.openForm.bind(this);
     }
 
     clearItems() {
@@ -80,7 +81,17 @@ class CartPage extends React.Component {
         })
     }
 
+    openForm(){
+        this.setState({
+            ...this.state,
+            redirectToForm: true,
+        });
+    }
+
     render(){
+        if(this.redirectToForm){
+            return <Redirect push to="/black-friday/form/" />
+        }
         return (
             <div className="cart">
                 <Header openSearch={this.openSearch} />
@@ -107,6 +118,11 @@ class CartPage extends React.Component {
                                 Воспользуйтесь каталогом для добавления товаров
                             </span>
                         </span>
+                    )}
+                    {this.state.items.length > 0 ? (
+                        <button onClick={this.openForm} type="button" className="cart__button">Оформить заказ</button>
+                    ) : (
+                        <div></div>
                     )}
                 </div>
                 <Search shown={this.state.search} closeHandler={this.closeSearch}/>

@@ -158,7 +158,7 @@ export default class API {
             ))
         }
     }
-
+    
     static async getGoodById(itemId = null) {
         if (!itemId) {
             return null;
@@ -173,6 +173,68 @@ export default class API {
         return allGoods.goods.find((good) => (
             good.id === itemId
         )) || null;
+    }
+
+    static mixinArrays(array1, array2) {
+        return array1.filter(value => array2.includes(value));
+    }
+
+    static async getGoodByRAM(min, max) {
+        const goodsRaw = await API.getGoods();
+
+        if (goodsRaw.status === 'Error') {
+            return goodsRaw;
+        }
+
+        return goodsRaw.goods.filter((good) => {
+            const { value } = good.parameters.find(param => param.title === 'RAM');
+
+            return (
+                value <= max
+                && value >= min
+            );
+        });
+    }
+
+    static async getGoodByMem(min, max) {
+        const goodsRaw = await API.getGoods();
+
+        if (goodsRaw.status === 'Error') {
+            return goodsRaw;
+        }
+
+        return goodsRaw.goods.filter((good) => {
+            const { value } = good.parameters.find(param => ['Built-in memory', 'SSD'].includes(param.title));
+
+            return (
+                value <= max
+                && value >= min
+            );
+        });
+    }
+
+    static async getGoodsByFilters(filters = {}) {
+        const goodsRaw = await API.getGoods();
+
+        if (goodsRaw.status === 'Error') {
+            return goodsRaw;
+        }
+
+        return goodsRaw.goods.filter((good) => {
+            const { value: ram } = good.parameters.find(param => param.title === 'RAM');
+            const { value: mem } = good.parameters.find(param => ['Built-in memory', 'SSD'].includes(param.title));
+
+            return (
+                (filters['RAM'] ? (
+                    ram <= filters['RAM'].max
+                    && ram >= filters['RAM'].min
+                ) : true)
+                && (filters['Mem'] ? (
+                    mem <= filters['Mem'].max
+                    && mem >= filters['Mem'].min
+                ) : true)
+            )
+        });
     }
 
     static getItemById(itemId = null) {

@@ -13,7 +13,7 @@
     border-radius: 0 0 4px 4px;
     margin-bottom: 32px;
 
-    background: $theme_primary;
+    background: rgba($theme_white, 0.04);
 
     @include shadow(1);
 }
@@ -35,7 +35,7 @@
     position: relative;
     // margin-right: 4px;
     @include font(title_h2);
-    color: $theme_black;
+    color: $theme_primary;
 }
 
 .header__logo-text {
@@ -75,7 +75,7 @@
     margin: 0 8px;
 
     @include font(main_text);
-    color: $theme_black;
+    color: $theme_white;
 
     cursor: pointer;
 }

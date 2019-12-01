@@ -14,7 +14,7 @@
     box-sizing: border-box;
     margin-bottom: 16px;
 
-    background: $theme_background;
+    background: rgba($theme_white, 0.04);
 
     @include shadow(1);
 }
@@ -45,7 +45,7 @@
     margin-bottom: 8px;
 
     @include font(title_h4);
-    color: $theme_black;
+    color: $theme_white;
 }
 .cart-item__count{
     width: auto;
@@ -60,15 +60,15 @@
     @include shadow(1);
 }
 .cart-item__button{
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     display: flex;
     position: relative;
     align-items: center;
     justify-content: center;
 
-    @include font(more_text);
-    color: $theme_black;
+    @include font(title_h4);
+    color: $theme_white;
 
     background: rgba($theme_grey, 0.08);
 
@@ -95,7 +95,7 @@
 }
 .cart-item__count-text{
     width: 48px;
-    height: 24px;
+    height: 32px;
     display: flex;
     position: relative;
     align-items: center;
@@ -105,7 +105,7 @@
     border:none;
 
     @include font(more_text);
-    color: $theme_black;
+    color: $theme_white;
     background: rgba($theme_grey, 0.16);
 
     outline: none;
@@ -118,6 +118,7 @@
     flex-direction: row;
 
     @include font(more_text);
+    color: $theme_white;
 }
 .cart-item__price{
     width: calc(100% / 12 * 4);
@@ -126,5 +127,4 @@
     position: relative;
 
     @include font(title_h3);
-    color: $theme_secondary;
 }
