@@ -176,6 +176,9 @@
         align-self: center;
         margin-left: 0;
         justify-content: center;
+        &:nth-of-type(1){
+            margin-right: 8px;
+        }
     }
 }
 .home__preloader-container{
