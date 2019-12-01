@@ -37,7 +37,7 @@ class CartPage extends React.Component {
             items: []
         });
 
-        Cart.getItems().forEach(cartItem => {
+        Cart.getItems().sort((a,b)=>b.id-a.id).forEach(cartItem => {
             API.getGoodById(cartItem.id).then(item => {
                 this.setState({
                     ...this.state,
@@ -93,7 +93,7 @@ class CartPage extends React.Component {
                     </div>
                     {console.log(this.state.items.length)}
                     {this.state.items.length > 0 ? (
-                        this.state.items.sort((a, b) => b.id - a.id).map((item, i) => {
+                        this.state.items.map((item, i) => {
                             return (
                                 <CartItem handleChange={this.handleChange} key={i} item={item} />
                             )
