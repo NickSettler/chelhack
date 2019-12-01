@@ -93,9 +93,7 @@ class CartPage extends React.Component {
                     </div>
                     {console.log(this.state.items.length)}
                     {this.state.items.length > 0 ? (
-                        this.state.items.map((item, i) => {
-                            console.log(item, i);
-
+                        this.state.items.sort((a, b) => b.id - a.id).map((item, i) => {
                             return (
                                 <CartItem handleChange={this.handleChange} key={i} item={item} />
                             )
