@@ -52,8 +52,6 @@ export default class Cart {
             item.id === itemId
         ));
 
-        console.log(currentItem);
-
         if (!currentItem) {
             currentItem = new CartItem({
                 id: itemId

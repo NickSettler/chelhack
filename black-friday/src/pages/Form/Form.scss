@@ -87,6 +87,7 @@
     display: flex;
     position: relative;
     flex-direction: row;
+    justify-content: center;
 
     @include font(title_h2);
     color: $theme_primary;

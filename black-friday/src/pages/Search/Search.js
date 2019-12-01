@@ -21,13 +21,11 @@ class SearchPage extends React.Component {
 
     handleInputChange(event){
         event.persist();
-        console.log(event.target.value);
         this.setState({
             ...this.state,
             query: event.target.value
         })
         API.searchGoods(event.target.value).then(goods => {
-            console.log(goods);
             this.setState({
                 ...this.state,
                 goods: goods.goods
@@ -37,7 +35,6 @@ class SearchPage extends React.Component {
 
     goodUpdateHandler(){
         API.searchGoods(this.state.query).then(goods => {
-            console.log(goods);
             this.setState({
                 ...this.state,
                 goods: []
@@ -51,7 +48,6 @@ class SearchPage extends React.Component {
 
     componentDidMount(){
         API.searchGoods(this.state.query).then(goods => {
-            console.log(goods);
             this.setState({
                 ...this.state,
                 goods: goods.goods
@@ -59,14 +55,12 @@ class SearchPage extends React.Component {
         })
     }
     closeSearch() {
-        console.log("[SEARCH] - CLOSE")
         this.setState({
             ...this.state,
             search: false,
         })
     }
     openSearch() {
-        console.log("[SEARCH] - OPEN")
         this.setState({
             ...this.state,
             search: true

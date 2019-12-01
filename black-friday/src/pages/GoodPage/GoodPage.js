@@ -26,7 +26,6 @@ class GoodPage extends React.Component{
 
     componentDidMount(){
         API.getGoodById(+this.props.match.params.id).then(good => {
-            console.log(good);
             this.setState({
                 ...this.state, 
                 good
@@ -42,14 +41,12 @@ class GoodPage extends React.Component{
     }
 
     closeSearch() {
-        console.log("[SEARCH] - CLOSE")
         this.setState({
             ...this.state,
             search: false,
         })
     }
     openSearch() {
-        console.log("[SEARCH] - OPEN")
         this.setState({
             ...this.state,
             search: true

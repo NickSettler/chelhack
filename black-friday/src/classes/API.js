@@ -107,7 +107,6 @@ export default class API {
     }
 
     static async lazyLoadGoods() {
-        console.log('LAZYLOAD');
         let goodsRaw = await API.request(
             'http://10.100.67.127:8989/userapi/getGoods',
             {

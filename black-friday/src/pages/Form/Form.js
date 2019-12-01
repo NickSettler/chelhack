@@ -26,14 +26,12 @@ class Form extends React.Component{
 
 
     closeSearch() {
-        console.log("[SEARCH] - CLOSE")
         this.setState({
             ...this.state,
             search: false,
         })
     }
     openSearch() {
-        console.log("[SEARCH] - OPEN")
         this.setState({
             ...this.state,
             search: true

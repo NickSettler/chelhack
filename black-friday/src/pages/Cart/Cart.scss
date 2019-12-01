@@ -91,7 +91,7 @@
     flex-wrap: wrap;
 
     @include font(title_h3);
-    color: $theme_black;
+    color: $theme_white;
 
     &:nth-of-type(1){
         margin-bottom: 8px;

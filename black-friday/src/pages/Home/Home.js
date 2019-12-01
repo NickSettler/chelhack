@@ -58,8 +58,6 @@ class Home extends React.Component {
             page: newPage
         });
 
-        console.log('PAGE CHANGED', this.state.page, newPage);
-
         return;
     }
     
@@ -70,7 +68,6 @@ class Home extends React.Component {
         
         if (this.state.applyFilters) {
             let filters = {};
-            console.log(123);
             
             if (this.state.minRam !== undefined && this.state.maxRam !== undefined) {
                 filters['RAM'] = {
@@ -85,11 +82,8 @@ class Home extends React.Component {
                     max: this.state.maxMem || 10000
                 };
             }
-
-            console.log(filters);
             
             API.getGoodsByFilters(filters).then(array => {
-                console.log(array);
 
                 this.setState({
                     ...this.state,
@@ -123,7 +117,6 @@ class Home extends React.Component {
                             loading: false,
                         });
                     } else {
-                        console.log(response);
                         this.setState({
                             ...this.state,
                             message,
@@ -154,14 +147,12 @@ class Home extends React.Component {
     }
 
     closeSearch() {
-        console.log("[SEARCH] - CLOSE")
         this.setState({
             ...this.state,
             search: false,
         })
     }
     openSearch() {
-        console.log("[SEARCH] - OPEN")
         this.setState({
             ...this.state,
             search: true

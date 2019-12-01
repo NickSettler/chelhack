@@ -74,7 +74,6 @@ class CartPage extends React.Component {
 
     componentDidMount() {
         this.fillItems();
-        console.log(this.state.items);
     }
 
     formatPrice(price) {
@@ -86,14 +85,12 @@ class CartPage extends React.Component {
     }
 
     closeSearch() {
-        console.log("[SEARCH] - CLOSE")
         this.setState({
             ...this.state,
             search: false,
         })
     }
     openSearch() {
-        console.log("[SEARCH] - OPEN")
         this.setState({
             ...this.state,
             search: true
@@ -121,7 +118,6 @@ class CartPage extends React.Component {
                         </span>
                         <div onClick={this.clearItems} className="cart__clear"></div>
                     </div>
-                    {console.log(this.state.items.length)}
                     {this.state.items.length > 0 ? (
                         this.state.items.map((item, i) => {
                             return (
