@@ -40,6 +40,14 @@
     background-repeat: no-repeat;
 
     cursor: pointer;
+
+    transition-property: background;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+
+    &:hover{
+        background-image: url("../../assets/icons/back_active.svg");
+    }
 }
 .good-page__content{
     width: 62.5%;
@@ -50,11 +58,11 @@
     justify-content: space-between;
 
     border-radius: 4px;
-    padding: 16px 8px;
+    padding: 16px 16px;
     box-sizing: border-box;
     margin-bottom: 32px;
 
-    background: $theme_white;
+    background: rgba($theme_white, 0.04);
 
     @include shadow(1);
 
@@ -89,36 +97,41 @@
 .good-page__button{
     width: 100%;
     height: auto;
-    display: flex;
+    display: inline-flex;
     position: relative;
     justify-content: center;
 
-    padding: 8px 16px;
+    margin-top: 16px;
+    padding: 8px 24px;
     box-sizing: border-box;
-    border-radius: 4px;
-    border: none;
+    border: 2px solid $theme_secondary;
+    border-radius: 8px;
+    margin-bottom: 32px;
 
-    background: $theme_secondary;
+    @include font(more_text);
+
+    background: transparent;
+    color: $theme_secondary;
+    font-weight: bold;
     outline: none;
     cursor: pointer;
-    color: $theme_white;
-    @include font(more_text);
-    color: $theme_white;
 
-    @include shadow(1);
-
-    transition-property: box-shadow, transform;
+    transition-property: transform;
     transition-duration: 0.15s;
     transition-timing-function: ease-in-out;
 
-    user-select: none;
-
     &:hover{
         transform: translateY(-2px);
-        @include shadow(2);
     }
     &:active{
         transform: translateY(-1px);
+    }
+
+    &.good-page_inCart{
+        font-weight: bold;
+        background: $theme_secondary;
+        border: none;
+        color: $theme_white;
     }
 }
 .good-page__content-block{
@@ -138,7 +151,7 @@
     margin-bottom: 8px;
     
     @include font(title_h3);
-    color: $theme_black;
+    color: $theme_white;
 }
 .good-page__brand{
     width: auto;
@@ -149,7 +162,8 @@
     margin-bottom: 8px;
 
     @include font(more_text);
-    // color: $theme_grey;
+    color: $theme_white;
+    font-weight: bold;
 }
 .good-page__count{
     width: auto;
@@ -159,8 +173,8 @@
 
     margin-bottom: 32px;
 
-    @include font(more_text)
-    color: $theme_grey;
+    @include font(more_text);
+    color: rgba($theme_white, 0.72);
 }
 .good-page__price_old{
     width: auto;
@@ -173,7 +187,7 @@
     margin-bottom: 8px;
     
     @include font(title_h4);
-    color: $theme_grey;
+    color: rgba($theme_white, 0.72);;
 
     &::after{
         content: " ";
@@ -182,7 +196,7 @@
         display: flex;
         position: absolute;
 
-        background: $theme_grey;
+        background: rgba($theme_white, 0.72);
 
         transform: skew(10deg, 10deg);
     }
@@ -195,7 +209,7 @@
 
     margin-bottom: 32px;
 
-    @include font(title_h3);
+    @include font(title_h2);
     color: $theme_secondary;
 }
 .good-page__table-title{
@@ -204,8 +218,10 @@
     display: flex;
     position: relative;
 
+    margin-bottom: 16px;
+
     @include font(more_text);
-    color: $theme_black;
+    color: $theme_white;
 }
 .good-page__table{
     width: 100%;
@@ -229,8 +245,8 @@
 
     padding: 8px;
     box-sizing: border-box;
-    border: 1px solid $theme_grey;
+    border: 1px solid $theme_secondary;
 
     @include font(main_text);
-    color: $theme_black;
+    color: $theme_white;
 }

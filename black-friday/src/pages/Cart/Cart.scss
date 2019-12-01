@@ -94,6 +94,17 @@
         color: blue;
     }
 }
+.cart__total{
+    width: 100%;
+    height: auto;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    @include font(title_h4);
+    color: $theme_white;
+}
 .cart__button{
     width: auto;
     height: auto;

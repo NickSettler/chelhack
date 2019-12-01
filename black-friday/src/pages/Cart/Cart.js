@@ -38,6 +38,7 @@ class CartPage extends React.Component {
             items: []
         });
 
+
         Cart.getItems().sort((a,b)=>b.id-a.id).forEach(cartItem => {
             API.getGoodById(cartItem.id).then(item => {
                 this.setState({
@@ -56,6 +57,7 @@ class CartPage extends React.Component {
 
     componentDidMount() {
         this.fillItems();
+        console.log(this.state.items);
     }
 
     formatPrice(price) {
@@ -118,6 +120,13 @@ class CartPage extends React.Component {
                                 Воспользуйтесь каталогом для добавления товаров
                             </span>
                         </span>
+                    )}{this.state.items.length > 0 ? (
+                        <span className="cart__total">
+                            Итого:
+                            {}
+                        </span>
+                    ) : (
+                        <div></div>
                     )}
                     {this.state.items.length > 0 ? (
                         <button onClick={this.openForm} type="button" className="cart__button">Оформить заказ</button>

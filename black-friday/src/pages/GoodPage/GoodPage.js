@@ -14,6 +14,8 @@ class GoodPage extends React.Component{
             good: {},
             search: false,
             redirect: false,
+            isInCart: false,
+            redirectToCart: false,
         }
 
         this.closeSearch = this.closeSearch.bind(this);
@@ -30,6 +32,13 @@ class GoodPage extends React.Component{
                 good
             })
         })
+        let item = API.getItemById(+this.props.match.params.id);
+        if(item){
+            this.setState({
+                ...this.state,
+                isInCart: true
+            });
+        }
     }
 
     closeSearch() {
@@ -55,7 +64,18 @@ class GoodPage extends React.Component{
     }
 
     addCart(){
-        Cart.addItem(this.state.good.id);
+        if(this.state.isInCart){
+            this.setState({
+                ...this.state,
+                redirectToCart: true,
+            })
+        }else{
+            this.setState({
+                ...this.state,
+                isInCart: true,
+            });      
+            Cart.addItem(this.state.good.id);
+        }
     }
 
     formatPrice(price = 0) {
@@ -66,6 +86,9 @@ class GoodPage extends React.Component{
         if(this.state.redirect){
             return <Redirect to="/black-friday" push />
         }
+        if(this.state.redirectToCart){
+            return <Redirect to="/black-friday/cart" push />
+        }
         return(
             <div className="good-page">
                 <Header openSearch={this.openSearch} />
@@ -75,7 +98,13 @@ class GoodPage extends React.Component{
                 <div className="good-page__content">
                     <div className="good-page__image-block">
                         <img className="good-page__image" src={this.state.good ? (process.env.REACT_APP_BASE_API_URL+this.state.good.imageUrl) : ("")} /> 
-                        <button type="button" className="good-page__button" onClick={this.addCart}>Добавить в корзину</button>
+                        <button type="button" className={"good-page__button"+(this.state.isInCart ? " good-page_inCart" : "")} onClick={this.addCart}>
+                            {this.state.isInCart ? (
+                                "Уже в корзине"
+                            ) : (
+                                "Добавить в корзину"
+                            )}
+                        </button>
                     </div>
                     <div className="good-page__content-block">
                         <span className="good-page__title">

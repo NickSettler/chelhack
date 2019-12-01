@@ -65,6 +65,7 @@
     height: auto;
     display: flex;
     position: relative;
+    justify-content: center;
 
     margin-bottom: 16px;
 
@@ -108,10 +109,9 @@
     &:focus{
         border-color: $theme_secondary;
         background: rgba($theme_white, 0.16);
-
-        &::placeholder{
-            color: rgba($theme_white, 0.48);
-        }
+    }
+    &::placeholder{
+        color: rgba($theme_white, 0.48);
     }
 
     &::-webkit-outer-spin-button,
@@ -201,10 +201,13 @@
     height: auto;
     display: flex;
     position: relative;
+    justify-content: center;
+
+    margin-bottom: 32px;
 }
 .home__page-button{
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
     display: flex;
     position: relative;
     flex-direction: row;
@@ -213,12 +216,16 @@
 
     @include font(more_text);
 
-    background: $theme_white;
+    background: rgba($theme_white, 0.04);
     color: $theme_secondary;
 
     outline: none;
     cursor: pointer;
     user-select: none;
+
+    &.active{
+        border: 2px solid $theme_primary;
+    }
 
     &:first-of-type{
         border-radius: 8px 0 0 8px;

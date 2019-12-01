@@ -58,6 +58,8 @@ class Home extends React.Component {
             page: newPage
         });
 
+        console.log('PAGE CHANGED', this.state.page, newPage);
+
         return;
     }
     
@@ -174,11 +176,12 @@ class Home extends React.Component {
             applyFilters: true,
         })
     }
+
     resetFilters(){
         this.setState({
             ...this.state, 
             applyFilters: false,
-        })
+        });
     }
 
     handleNumberInput(event){
@@ -290,7 +293,7 @@ class Home extends React.Component {
                         {
                             new Array(Math.ceil(this.state.goods.length / 12)).fill().map((_, i) => {
                                 return (
-                                    <div onClick={() => this.changePage(i)} className="home__page-button">{i + 1}</div>
+                                    <div onClick={() => this.changePage(i)} className={"home__page-button"+(this.state.page === i ? " active" : "")}>{i + 1}</div>
                                 )
                             })
                         }

@@ -44,7 +44,7 @@
     position: relative;
 
     @include font(title_h2);
-    color: $theme_black;
+    color: $theme_white;
 }
 .search__form-block{
     width: 100%;
@@ -64,29 +64,47 @@
     margin-bottom: 8px;
 
     @include font(more_text);
-    color: $theme_black;
+    color: $theme_white;
 }
 .search__form-input{
     width: 100%;
     height: auto;
     display: flex;
     position: relative;
-    justify-content: flex-start;
 
-    border-radius: 8px 8px 0 0;
-    padding: 8px 16px;
-    box-sizing: border-box;
     border: none;
-    border-bottom: 2px solid $theme_grey;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 2px solid $theme_grey;
+    border-radius: 8px;
+    margin-bottom: 16px;
 
     @include font(more_text);
-    color: $theme_black;
-    background: transparent;
-    outline: none;
+    color: $theme_white;
+    background: rgba($theme_white, 0.04);
 
-    transition-property: border, background;
+    transition-property: border, background, transform;
     transition-duration: 0.15s;
     transition-timing-function: ease-in-out;
+
+    outline: none;
+
+    &:focus{
+        border-color: $theme_secondary;
+        background: rgba($theme_white, 0.16);
+    }
+
+    &::placeholder{
+        color: rgba($theme_white, 0.48);
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        visibility: hidden;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }
 
     &:focus{
         background: rgba($theme_grey, 0.24);
